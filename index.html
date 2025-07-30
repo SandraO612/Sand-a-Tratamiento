@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sandía Tratamiento Tienda Online</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header class="hero-banner">
+  <img src="banner.jpg" alt="Imagen principal de la tienda">
+</header>
+<header>
+  <div class="nav-bar">
+    <p class="slogan">Belleza natural, cuidado real</p>
+    <p id="carrito">🛒 Carrito: 0 artículos</p>
+  </div>
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#productos">Productos</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<div class="contenedor-productos">
+  <div class="producto">
+    <img src="Producto 1.jpg" alt="Producto 1">
+    <h3>Sandía 30 ml</h3>
+    <p>$25.000</p>
+    <div>
+      <script 
+        src="https://www.mercadopago.com.co/integrations/v1/web-payment-checkout.js"
+        data-preference-id="254305342-bc0eb812-b6ce-47fc-bc3e-bcf524ee65be"
+        data-source="button">
+      </script>
+    </div>
+    <button class="btn-carrito">Agregar al carrito</button>
+  </div>
+
+  <div class="producto">
+    <img src="Producto 2.jpg" alt="Producto 2">
+    <h3>Sandía 60 ml</h3>
+    <p>$50.000</p>
+    <div>
+      <script 
+        src="https://www.mercadopago.com.co/integrations/v1/web-payment-checkout.js"
+        data-preference-id="254305342-79ae6378-5e29-47e9-8198-b9308a162bbd"
+        data-source="button">
+      </script>
+    </div>
+    <button class="btn-carrito">Agregar al carrito</button>
+  </div>
+</div>
+  <section class="contacto">
+    <h2>Contáctanos</h2>
+    <form>
+      <label for="nombre">Nombre:</label><br>
+      <input type="text" id="nombre" name="nombre" required><br><br>
+
+      <label for="email">Correo electrónico:</label><br>
+      <input type="email" id="email" name="email" required><br><br>
+
+      <label for="mensaje">Mensaje:</label><br>
+      <textarea id="mensaje" name="mensaje" rows="5" required></textarea><br><br>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Mi Tienda. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+  let contador = 0;
+  const contadorSpan = document.getElementById("contador");
+  const carritoHeader = document.getElementById("carrito");
+  const listaCarrito = [];
+
+  const botonesCarrito = document.querySelectorAll(".btn-carrito");
+
+  botonesCarrito.forEach(boton => {
+    boton.addEventListener("click", (evento) => {
+      const producto = evento.target.closest(".producto");
+      const nombreProducto = producto.querySelector("h3").textContent;
+
+      contador++;
+      contadorSpan.textContent = contador;
+      carritoHeader.textContent = `🛒 Carrito: ${contador} artículos`;
+
+      listaCarrito.push(nombreProducto);
+
+      // Feedback visual
+      boton.textContent = "¡Agregado!";
+      boton.style.backgroundColor = "#4CAF50";
+      setTimeout(() => {
+        boton.textContent = "Agregar al carrito";
+        boton.style.backgroundColor = "";
+      }, 1500);
+    });
+  });
+</script>
+  <script>
+  const botones = document.querySelectorAll(".btn-carrito");
+
+  botones.forEach(boton => {
+    boton.addEventListener("click", () => {
+      // Cambiar el texto temporalmente
+      boton.textContent = "¡Agregado!";
+      boton.style.backgroundColor = "#4CAF50"; // verde
+      
+      // Volver al estado original luego de 1.5 segundos
+      setTimeout(() => {
+        boton.textContent = "Agregar al carrito";
+        boton.style.backgroundColor = ""; // volver al color original
+      }, 1500);
+    });
+  });
+</script>
+</body>
+</html>
